@@ -1,4 +1,5 @@
 class ApplicationController < Sinatra::Base
+	use Rack::Flash
 
 	configure do
 		set :views, "app/views"
