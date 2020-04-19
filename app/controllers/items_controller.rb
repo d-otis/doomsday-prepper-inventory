@@ -1,7 +1,9 @@
 class ItemsController < ApplicationController
 
 	get "/items" do
-		"items index"
+		@items = Item.order(name: :asc)
+		
+		erb :"/items/index"
 	end
 
 	get "/items/new" do
@@ -15,7 +17,7 @@ class ItemsController < ApplicationController
 
 		if item.save
 			flash[:message] = "#{item.name} created!"
-			
+
 			redirect "/items"
 		else
 			flash[:message] = item.errors.messages.collect {|k,v| "#{k.to_s.capitalize} #{v.join}"}
