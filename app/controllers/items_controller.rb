@@ -15,9 +15,11 @@ class ItemsController < ApplicationController
 
 		if item.save
 			flash[:message] = "#{item.name} created!"
+			
 			redirect "/items"
 		else
-			flash[:message] = "Error"
+			flash[:message] = item.errors.messages.collect {|k,v| "#{k.to_s.capitalize} #{v.join}"}
+
 			redirect "/items/new"
 		end
 
