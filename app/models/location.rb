@@ -7,7 +7,7 @@ class Location < ActiveRecord::Base
 		name.downcase.gsub(/[!?@ +,&]/, "-").gsub(/[().']/, "").gsub("$", "s").squeeze("-")
 	end
 
-	def find_by_slug(slug)
+	def self.find_by_slug(slug)
 		self.all.find {|instance| instance.slug == slug} 
 	end
 
