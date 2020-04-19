@@ -1,4 +1,4 @@
 # To Do
 
-[ ] Create migrations
-[ ] Test Migrations
+- [ ] Create migrations
+- [ ] Test Migrations
