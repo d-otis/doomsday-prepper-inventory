@@ -5,6 +5,22 @@ class ItemsController < ApplicationController
 	end
 
 	get "/items/new" do
-		"new items route"
+		@locations = Location.all
+
+		erb :"/items/new"
 	end
-end
+
+	post "/items" do
+		item = Item.new(params[:item])
+
+		if item.save
+			flash[:message] = "#{item.name} created!"
+			redirect "/items"
+		else
+			flash[:message] = "Error"
+			redirect "/items/new"
+		end
+
+		
+	end
+ end
