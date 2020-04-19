@@ -2,9 +2,20 @@
 
 
 <div class="col-sm-6 offset-sm-3">
+
+	<% if flash.has?(:message) %>
+
+	<div class="alert alert-secondary" role="alert">
+		<%= flash[:message] %>
+	</div>
+	
+	<% end %>
+
 	<div class="list-group">
 		<% @items.each do |item| %>
 		<a href="#" class="list-group-item list-group-item-action"><%= item.name %></a>
 		<% end %>
 	</div>
 </div>
+
+
