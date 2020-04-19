@@ -4,7 +4,7 @@
 
 		<% @locations.each do |location| %>
 
-		<a href="#" class="list-group-item list-group-item-action"><%= location.name %></a>
+		<a href="/locations/<%= location.slug %>" class="list-group-item list-group-item-action"><%= location.name %></a>
 
 		<% end %>
 
