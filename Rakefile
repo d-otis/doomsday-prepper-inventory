@@ -5,7 +5,7 @@ require_relative "./config/environment"
 require "sinatra/activerecord/rake"
 
 def reload!
-	reload_all "app"
+	load_all "app"
 end
 
 task :console do
