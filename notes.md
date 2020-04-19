@@ -2,3 +2,4 @@
 
 - [ ] Create migrations
 - [ ] Test Migrations
+- [ ] Seed Data
