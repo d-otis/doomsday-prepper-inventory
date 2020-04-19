@@ -1,4 +1,4 @@
-class LocationController < ApplicationController
+class LocationsController < ApplicationController
 
 	get "/locations" do
 		"locations index"
