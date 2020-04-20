@@ -29,4 +29,26 @@ class Item < ActiveRecord::Base
 		end
 	end
 
+	def self.under_items
+		self.under_location_items.order(item_id: :asc).collect do |location_item|
+			location_item
+		end
+	end
+
+	def total
+		LocationItem.where("item_id = ?", self.id).collect(&:item_count).reduce(:+)
+	end
+
+	def under_amount
+		par_total - total > 0 ? par_total - total : "<span class='badge badge-pill badge-success'>Stocked</span>"
+	end
+
+	def par_total
+		LocationItem.where("item_id = ?", self.id).collect(&:item_par).reduce(:+)
+	end
+
+	def self.under_location_items
+		LocationItem.where("under = 't'").order(item_id: :asc)
+	end
+
 end
