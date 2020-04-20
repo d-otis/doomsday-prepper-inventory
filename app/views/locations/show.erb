@@ -5,7 +5,7 @@
 <div class="col-sm-6 offset-sm-3">
 	<h3><%= @location.name %> <small class="text-muted"><a href="/locations/<%= @location.slug %>/edit">edit</a></small> </h3>
 	<ul>
-		<% @location.items.each do |item| %>
+		<% @location.items.order(name: :asc).each do |item| %>
 		<li> <%= item.name %></li>
 		<% end %>
 	</ul>
