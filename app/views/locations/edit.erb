@@ -9,37 +9,22 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-row">
-			<div class="col-sm-4 offset-sm-4">
-				Count
-			</div>
-			<div class="col-sm-4">
-				Par
-			</div>
 
-		</div>
 		
-		<% @items.each do |item| %>
-		<div class="form-row">
-			<div class="col">
-				<div class="form-check form-check mb-2">
-					<input type="checkbox" class="form-check-input" id="item_<%= item.id %>" value="<%= item.id %>" name="location[item_ids][]" <%= 'checked' if @location.item_ids.include?(item.id) %>>
-					<label for="item_<%= item.id %>" class="form-check-label"><%= item.name %></label>
-				</div>
-			</div>
-
+<% @items.each do |item| %>
+		<div class="form-row mb-2">
 <%# --------------- item_count --------------- %>
-			<div class="col">
-				<input type="number" class="form-control" value="<%= item.item_count(@location) %>" name="location_items[][<%= item.li_id(item.id, @location.id) if item.li_id(item.id, @location.id)  %>][item_count]" <%= 'disabled' if !@location.item_ids.include?(item.id) %> step="any">
+			<div class="form-group col-sm-6">
+				<label class="" for="<%= item.name %>_count"><strong><%= item.name %></strong> Count</label>
+				<input type="number" class="form-control" id="<%= item.name %>_count" value="<%= item.item_count(@location) %>" name="location_items[][<%= item.li_id(item.id, @location.id) if item.li_id(item.id, @location.id)  %>][item_count]" <%= 'disabled' if !@location.item_ids.include?(item.id) %> step="any">
 			</div>
 <%# --------------- item_par --------------- %>			
-			<div class="col">
+			<div class="form-group col-sm-6">
+				<label for="" class=""><%# item.name %> Par</label>
 				<input type="number" class="form-control" value="<%= item.item_par(@location) %>" name="location_items[][<%= item.li_id(item.id, @location.id) if item.li_id(item.id, @location.id) %>][item_par]" <%= 'disabled' if !@location.item_ids.include?(item.id) %> step="any">
 			</div>
-
 		</div>
-
-		<% end %>
+<% end %>
 
 		<br>
 		<input type="submit" class="btn btn-primary" value="Save">
