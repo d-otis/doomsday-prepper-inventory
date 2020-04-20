@@ -1,6 +1,6 @@
 class Item < ActiveRecord::Base
 
-	has_many :location_items
+	has_many :location_items, :dependent => :destroy
 	has_many :locations, through: :location_items
 
 	validates :name, presence: true
@@ -40,7 +40,7 @@ class Item < ActiveRecord::Base
 	end
 
 	def under_amount
-		par_total - total > 0 ? par_total - total : "<span class='badge badge-pill badge-success'>Stocked</span>"
+		par_total - total > 0 ? "<span class='badge badge-pill badge-danger'>#{par_total - total}</span>" : "<span class='badge badge-pill badge-success'>Stocked</span>"
 	end
 
 	def par_total
