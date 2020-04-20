@@ -23,12 +23,16 @@ class LocationsController < ApplicationController
 	patch "/locations/:slug" do
 		location = Location.find_by_slug(params[:slug])
 		location.update(params[:location])
+
+
 		
 		params[:location_items].first.each do |l_i|
 			if l_i.first.to_i > 0 && !l_i.last.values.any?(&:empty?)
 				LocationItem.find(l_i.first).update(l_i.last)
 			end
 		end
+
+		LocationItem.update_under_status_all
 
 		redirect "/locations/#{location.slug}"
 	end
