@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
 	end
 
 	get "/" do
-		"Root Route"
+		erb :index
 	end
 
 end
