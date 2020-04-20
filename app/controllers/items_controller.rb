@@ -24,7 +24,40 @@ class ItemsController < ApplicationController
 
 			redirect "/items/new"
 		end
-
-		
 	end
+
+	get "/items/under" do
+		@under_location_items = Item.under_items
+
+		erb :"/items/under"
+	end
+
+	get "/items/:slug/edit" do
+		@item = Item.find_by_slug(params[:slug])
+		@locations = Location.all
+
+		erb :"/items/edit"
+	end
+
+	patch "/items/:slug" do
+		item = Item.find_by_slug(params[:slug])
+		slug = item.slug
+
+		if item.update(params[:item])
+			flash[:message] = "#{item.name} successfully updated!"
+			redirect "/items"
+		else
+			flash[:message] = "Item update error, please try again."
+			redirect "/items/#{slug}/edit"
+		end
+	end
+
+	delete "/items/:slug" do
+		item = Item.find_by_slug(params[:slug])
+
+		item.delete
+
+		redirect "/items"
+	end
+
  end
