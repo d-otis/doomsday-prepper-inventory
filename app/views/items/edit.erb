@@ -1,0 +1,36 @@
+<% if flash.has?(:message) %>
+<div class="col-sm-12">
+	<div class="alert alert-secondary text-center" role="alert">
+		<%= flash[:message] %>
+	</div>
+</div>
+<% end %>
+
+<div class="col-sm-6 offset-sm-3">
+	<h2>Edit Item</h2>
+	<form action="/items/<%= @item.slug %>" method="POST">
+		<input type="hidden" name="_method" value="PATCH">
+		<div class="form-group">
+			<label for="item_name">Item Name: </label>
+			<input type="text" class="form-control" id="item_name" name="item[name]" value="<%= @item.name %>">
+		</div>
+
+		<h3>Locations: </h3>
+
+<% @locations.each do |location| %>
+		<div class="form-check form-check-inline">
+			<input type="checkbox" class="form-check-input" id="location_<%= location.id %>" name="item[location_ids][]" value="<%= location.id %>" <%= 'checked' if @item.locations.include?(location) %>>
+			<label for="location_<%= location.id %>" class="form-check-label"><%= location.name %></label>
+		</div>
+<% end %>
+		<br>
+		<input type="submit" value="Edit" class="btn btn-primary my-2">
+<br>
+		<form action="/items/<%= @item.slug %>" method="POST">
+			<input type="hidden" name="_method" value="DELETE">
+			<input type="submit" value="Delete" class="btn btn-danger">
+		</form>
+
+	</form>
+</div>
+
