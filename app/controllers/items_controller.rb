@@ -26,10 +26,10 @@ class ItemsController < ApplicationController
 		end
 	end
 
-	get "/items/under" do
+	get "/items/shopping-list" do
 		@under_location_items = Item.under_items
 
-		erb :"/items/under"
+		erb :"/items/shopping-list"
 	end
 
 	get "/items/:slug/edit" do
@@ -55,7 +55,9 @@ class ItemsController < ApplicationController
 	delete "/items/:slug" do
 		item = Item.find_by_slug(params[:slug])
 
-		item.delete
+		item.destroy
+
+		flash[:message] = "Item successfully deleted."
 
 		redirect "/items"
 	end
