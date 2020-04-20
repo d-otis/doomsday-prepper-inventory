@@ -27,12 +27,16 @@
 					<label for="item_<%= item.id %>" class="form-check-label"><%= item.name %></label>
 				</div>
 			</div>
+
+<%# --------------- item_count --------------- %>
 			<div class="col">
-				<input type="number" class="form-control" value="<%= item.item_count(@location) %>" name="location_items[][<%= item.li_id(item.id, @location.id) if item.li_id(item.id, @location.id)  %>][item_count]">
+				<input type="number" class="form-control" value="<%= item.item_count(@location) %>" name="location_items[][<%= item.li_id(item.id, @location.id) if item.li_id(item.id, @location.id)  %>][item_count]" <%= 'disabled' if !@location.item_ids.include?(item.id) %>>
 			</div>
+<%# --------------- item_par --------------- %>			
 			<div class="col">
-				<input type="number" class="form-control" value="<%= item.item_par(@location) %>" name="location_items[][<%= item.li_id(item.id, @location.id) if item.li_id(item.id, @location.id) %>][item_par]">
+				<input type="number" class="form-control" value="<%= item.item_par(@location) %>" name="location_items[][<%= item.li_id(item.id, @location.id) if item.li_id(item.id, @location.id) %>][item_par]" <%= 'disabled' if !@location.item_ids.include?(item.id) %>>
 			</div>
+
 		</div>
 
 		<% end %>
