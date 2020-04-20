@@ -1,19 +1,31 @@
-
-
-
-<div class="col-sm-6 offset-sm-3">
-
-	<% if flash.has?(:message) %>
-
-	<div class="alert alert-secondary" role="alert">
+<% if flash.has?(:message) %>
+<div class="col-sm-12">
+	<div class="alert alert-secondary text-center" role="alert">
 		<%= flash[:message] %>
 	</div>
-
-	<% end %>
-
-	<div class="list-group">
-		<% @items.each do |item| %>
-		<a href="/items/<%= item.slug %>" class="list-group-item list-group-item-action"><%= item.name %> // <%= item.locations.collect {|location| "#{location.name}"}.join(", ") %></a>
-		<% end %>
-	</div>
 </div>
+<% end %>
+
+<div class="col-sm-12">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Item</th>
+				<th scope="col">On Hand</th>
+				<th scope="col">Need</th>
+				<th scope="col">Locations</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @items.each.with_index(1) do |item, index| %>
+			<tr>
+				<th scope="row"><a href="/items/<%= item.slug %>/edit"><%= item.name %></a></th>
+				<td><%= item.total %></td>
+				<td><%= item.under_amount %></td>
+				<td><%= item.locations.collect {|location| "<a href=\"/locations/#{location.slug}\">#{location.name}</a>"}.join(", ") %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
