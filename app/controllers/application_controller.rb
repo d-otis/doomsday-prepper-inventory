@@ -1,5 +1,6 @@
 class ApplicationController < Sinatra::Base
 	use Rack::Flash
+	register Sinatra::ActiveRecordExtension
 
 	configure do
 		set :views, "app/views"
