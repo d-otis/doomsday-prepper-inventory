@@ -12,14 +12,14 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5 shadow-sm">
 		<a class="navbar-brand" href="/">Casa Lily Inventory</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a class="nav-link" href="/items">Items</a>
 				</li>
 				<li class="nav-item">
@@ -28,6 +28,12 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/items/shopping-list">Shopping List</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/logout">Logout</a>
+				</li> -->
+				<%= erb :"sessions/logged_in_nav" %>
+				<%= erb :"/sessions/logged_out_nav" %>
+				
 			</ul>
 		</div>
 	</nav>
