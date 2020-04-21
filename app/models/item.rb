@@ -49,10 +49,6 @@ class Item < ActiveRecord::Base
 		par_total - total > 0
 	end
 
-	def print_locations_links
-		self.locations.collect {|location| "<a href=\"/locations/#{location.slug}\">#{location.name}</a>"}.join(", ")
-	end
-
 	def print_locations(opts = {})
 		if opts[:links] == true
 			self.locations.collect {|location| "<a href=\"/locations/#{location.slug}\">#{location.name}</a>"}.join(", ")
