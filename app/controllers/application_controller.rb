@@ -16,6 +16,7 @@ class ApplicationController < Sinatra::Base
 		end
 	end
 
+
 	helpers do
 		def login(params)
 			user = User.find_by(username: params[:username])
@@ -46,5 +47,4 @@ class ApplicationController < Sinatra::Base
 			redirect "/"
 		end
 	end
-
 end
