@@ -1,26 +1,59 @@
-<div class="col-sm-8 offset-sm-2">
-	<% @locations.each do |location| %>
-	<h2><%= location.name %> <a class="badge badge-secondary">edit</a></h2>
-	<table class="table table-striped mb-4">
-		<thead>
-			<tr>
-				<!-- <th scope="col">#</th> -->
-				<th scope="col">Item</th>
-				<th scope="col">On Hand</th>
-				<th scope="col">Need</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% location.location_items.each do |line| %>
-			<tr>
-				<!-- <th scope="row">1</th> -->
-				<td><%= line.item.name %></td>
-				<td><%= line.item_count %></td>
-				<td><%= line.need %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-	<% end %>
+<div class="col-sm-12">
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+<!-- 		<li class="nav-item">
+			<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+		</li> -->
+<!-- 		<li class="nav-item">
+			<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+		</li> -->
+		<% @locations.each do |location| %>
+		<li class="nav-item">
+			<a class="nav-link <%= location.first? ? 'active' : '' %>" id="<%= location.slug %>-tab" data-toggle="tab" href="#<%= location.slug %>" role="tab" aria-controls="<%= location.slug %>" aria-selected="<%= location == Location.first ? 'true' : 'false' %>"><%= location.name %></a>
+		</li>
+		<% end %>
+	</ul>
+	<div class="tab-content" id="myTabContent">
+		<!-- <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">home</div> -->
+		<% @locations.each do |location| %>
+		
+		<div class="tab-pane fade <%= location.first? ? 'show active' : '' %>" id="<%= location.slug %>" role="tabpanel" aria-labelledby="<%= location.slug %>-tab">
+
+			<table class="table table-striped mb-4">
+				<thead>
+					<tr>
+						<!-- <th scope="col">#</th> -->
+						<th scope="col">Item</th>
+						<th scope="col">On Hand</th>
+						<th scope="col">Need</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% location.location_items.each do |line| %>
+					<tr>
+						<!-- <th scope="row">1</th> -->
+						<td>
+							<%= line.item.name %>
+						</td>
+						<td>
+							<%= line.item_count %>
+						</td>
+						<td>
+							<%= line.need %>
+						</td>
+						<td>
+							<a href="/locations/<%= location.slug %>/edit#<%= line.item.slug %>_count_label" class="badge badge-secondary">Edit</a>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+
+		</div>
+		<!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">content</div> -->
+		<% end %>
+	</div>
 </div>
 
+
+<!-- true if location == Location.first -->
