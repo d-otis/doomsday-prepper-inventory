@@ -23,14 +23,14 @@
 			<label for="location_<%= location.id %>" class="form-check-label"><%= location.name %></label>
 		</div>
 <% end %>
-		<br>
-		<input type="submit" value="Edit" class="btn btn-primary my-2">
-<br>
-		<form action="/items/<%= @item.slug %>" method="POST">
-			<input type="hidden" name="_method" value="DELETE">
-			<input type="submit" value="Delete" class="btn btn-danger">
-		</form>
 
+		<br>
+			<input type="submit" value="Edit" class="btn btn-secondary btn-block my-2">
+	</form>
+	<a href="/items" class="btn btn-outline-secondary btn-block mb-5">Cancel</a>
+	<form action="/items/<%= @item.slug %>" method="POST">
+		<input type="hidden" name="_method" value="DELETE">
+		<input type="submit" value="Delete" class="btn btn-danger btn-block">
 	</form>
 </div>
 
