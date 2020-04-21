@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 	get "/items" do
 		if logged_in?
 			@items = Item.order(name: :asc)
+			@title = "Items"
 			
 			erb :"/items/index"
 		else
@@ -13,6 +14,7 @@ class ItemsController < ApplicationController
 	get "/items/new" do
 		if logged_in?
 			@locations = Location.all
+			@title = "Add New Item"
 
 			erb :"/items/new"
 		else
@@ -52,6 +54,7 @@ class ItemsController < ApplicationController
 		if logged_in?
 			@item = Item.find_by_slug(params[:slug])
 			@locations = Location.all
+			@title = "Edit or Reassign Item"
 
 			erb :"/items/edit"
 		else

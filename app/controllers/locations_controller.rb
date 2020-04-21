@@ -3,6 +3,7 @@ class LocationsController < ApplicationController
 	get "/locations" do
 		if logged_in?
 			@locations = Location.all
+			@title = "Locations"
 
 			erb :"/locations/index"
 		else
@@ -15,6 +16,7 @@ class LocationsController < ApplicationController
 			@location = Location.find_by_slug(params[:slug])
 			@location_items = LocationItem.where(location: @location)
 			@items = Item.order(name: :asc)
+			@title = "Edit Location Items"
 
 			erb :"/locations/edit"
 		else
@@ -25,6 +27,7 @@ class LocationsController < ApplicationController
 	get "/locations/:slug" do
 		if logged_in?
 			@location = Location.find_by_slug(params[:slug])
+			@title = "#{@location.name} Items"
 
 			erb :"/locations/show"
 		else

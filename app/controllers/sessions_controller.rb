@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 	get "/login" do
+		@title = "Login"
 		if !logged_in?
 			erb :"/sessions/login"
 		else
