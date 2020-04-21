@@ -1,13 +1,26 @@
-<div class="col-sm-6 offset-sm-3">
-
-	<div class="list-group">
-
-		<% @locations.each do |location| %>
-
-		<a href="/locations/<%= location.slug %>" class="list-group-item list-group-item-action"><%= location.name %></a>
-
-		<% end %>
-
-	</div>
-
+<div class="col-sm-8 offset-sm-2">
+	<% @locations.each do |location| %>
+	<h2><%= location.name %> <a class="badge badge-secondary">edit</a></h2>
+	<table class="table table-striped mb-4">
+		<thead>
+			<tr>
+				<!-- <th scope="col">#</th> -->
+				<th scope="col">Item</th>
+				<th scope="col">On Hand</th>
+				<th scope="col">Need</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% location.location_items.each do |line| %>
+			<tr>
+				<!-- <th scope="row">1</th> -->
+				<td><%= line.item.name %></td>
+				<td><%= line.item_count %></td>
+				<td><%= line.need %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% end %>
 </div>
+
