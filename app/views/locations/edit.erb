@@ -5,14 +5,14 @@
 			<div class="col-sm-12">
 				<div class="form-group">
 					<label for="location_name"><h3>Location Name</h3></label>
-					<input type="text" name="location[name]" class="form-control" id="location_name" value="<%= @location.name %>">
+					<input type="text" name="location[name]" class="form-control form-control-lg" id="location_name" value="<%= @location.name %>">
 				</div>
 			</div>
 		</div>
 
 		
 <% @items.each.with_index(1) do |item, index| %>
-		<div class="form-row mb-2 <%#= 'bg-secondary text-light' if index.odd? %>">
+		<div class="form-row mb-2 pt-2 rounded" style="<%= "background-color: #d9d9d9" if index.odd? %>">
 <%# --------------- item_count --------------- %>
 			<div class="form-group col-sm-6">
 				<label id="<%= item.slug %>_count_label" class="" for="<%= item.slug %>_count"><strong><%= item.name %></strong> Count</label>
@@ -27,7 +27,7 @@
 <% end %>
 
 		<br>
-		<input type="submit" class="btn btn-primary" value="Save">
+		<input type="submit" class="btn btn-secondary btn-block mb-5" value="Save">
 	</form>
 </div>
 
