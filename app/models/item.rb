@@ -29,12 +29,6 @@ class Item < ActiveRecord::Base
 		end
 	end
 
-	def self.under_items
-		self.under_location_items.order(item_id: :asc).collect do |location_item|
-			location_item
-		end
-	end
-
 	def total
 		LocationItem.where("item_id = ?", self.id).collect(&:item_count).reduce(:+)
 	end
@@ -49,6 +43,14 @@ class Item < ActiveRecord::Base
 
 	def self.under_location_items
 		LocationItem.where("under = 't'").order(item_id: :asc)
+	end
+
+	def under?
+		par_total - total > 0
+	end
+
+	def print_locations_links
+		self.locations.collect {|location| "<a href=\"/locations/#{location.slug}\">#{location.name}</a>"}.join(", ")
 	end
 
 end
