@@ -11,4 +11,8 @@ class Location < ActiveRecord::Base
 		self.all.find {|instance| instance.slug == slug} 
 	end
 
+	def first?
+		self == Location.first
+	end
+
 end
