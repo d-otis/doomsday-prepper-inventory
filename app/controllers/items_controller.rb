@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
 	end
 
 	get "/items/shopping-list" do
-		@under_location_items = Item.under_items
+		@items = Item.order(name: :asc)
 
 		erb :"/items/shopping-list"
 	end
