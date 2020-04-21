@@ -12,16 +12,16 @@
 
 		
 <% @items.each.with_index(1) do |item, index| %>
-		<div class="form-row mb-2 pt-2 rounded" style="<%= "background-color: #d9d9d9" if index.odd? %>">
+		<div class="form-row mb-2 pt-2 rounded" style="<%= "background-color: #C8D9D9" if index.odd? %>">
 <%# --------------- item_count --------------- %>
 			<div class="form-group col-sm-6">
 				<label id="<%= item.slug %>_count_label" class="" for="<%= item.slug %>_count"><strong><%= item.name %></strong> Count</label>
-				<input type="number" class="form-control" id="<%= item.slug %>_count" value="<%= item.item_count(@location) %>" name="location_items[][<%= item.li_id(item.id, @location.id) if item.li_id(item.id, @location.id)  %>][item_count]" <%= 'disabled' if !@location.item_ids.include?(item.id) %> step="any">
+				<input type="number" class="form-control" id="<%= item.slug %>_count" value="<%= item.item_count(@location) %>" name="location_items[][<%= item.li_id(item.id, @location.id) if item.li_id(item.id, @location.id)  %>][item_count]" <%= 'disabled' if !@location.item_ids.include?(item.id) %> step="any" placeholder="<%= "assign items on Items page" if !@location.item_ids.include?(item.id) %>">
 			</div>
 <%# --------------- item_par --------------- %>			
 			<div class="form-group col-sm-6">
 				<label for="<%= item.slug %>_par" class=""><strong><%= item.name %></strong> PAR</label>
-				<input id="<%= item.slug %>_par" type="number" class="form-control" value="<%= item.item_par(@location) %>" name="location_items[][<%= item.li_id(item.id, @location.id) if item.li_id(item.id, @location.id) %>][item_par]" <%= 'disabled' if !@location.item_ids.include?(item.id) %> step="any">
+				<input id="<%= item.slug %>_par" type="number" class="form-control" value="<%= item.item_par(@location) %>" name="location_items[][<%= item.li_id(item.id, @location.id) if item.li_id(item.id, @location.id) %>][item_par]" <%= 'disabled' if !@location.item_ids.include?(item.id) %> step="any" placeholder="<%= "assign items on Items page" if !@location.item_ids.include?(item.id) %>">
 			</div>
 		</div>
 <% end %>
