@@ -53,4 +53,14 @@ class Item < ActiveRecord::Base
 		self.locations.collect {|location| "<a href=\"/locations/#{location.slug}\">#{location.name}</a>"}.join(", ")
 	end
 
+	def print_locations(opts = {})
+		if opts[:links] == true
+			self.locations.collect {|location| "<a href=\"/locations/#{location.slug}\">#{location.name}</a>"}.join(", ")
+		elsif opts[:links] == false
+			self.locations.collect {|location| "#{location.name}"}.join(", ")
+		elsif opts[:links] == "index"
+			self.locations.collect {|location| "<a href=\"/locations\">#{location.name}</a>"}.join(", ")
+		end
+	end
+
 end
