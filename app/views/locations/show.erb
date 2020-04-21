@@ -1,12 +1,10 @@
-
-
-
-
 <div class="col-sm-6 offset-sm-3">
-	<h3><%= @location.name %> <small class="text-muted"><a href="/locations/<%= @location.slug %>/edit">edit</a></small> </h3>
-	<ul>
-		<% @location.items.order(name: :asc).each do |item| %>
-		<li> <%= item.name %></li>
-		<% end %>
-	</ul>
+	<h3 class="text-center">
+		<%= @location.name %> <small class="badge badge-secondary"><a class="text-white" href="/locations/<%= @location.slug %>/edit">edit</a></small> </h3>
+		<div class="list-group">
+			<% @location.items.order(name: :asc).each.with_index(1) do |item, index| %>
+			<a href="/locations/<%= @location.slug %>/edit#<%= item.slug %>_count_label" class="list-group-item list-group-item-action"><%= index %>. <%= item.name %> <span class="badge badge-secondary">edit</span> </a>
+			<% end %>
+		</div>
 </div>
+
