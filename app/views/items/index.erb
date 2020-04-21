@@ -22,7 +22,7 @@
 				<th scope="row"><a href="/items/<%= item.slug %>/edit"><%= item.name %></a></th>
 				<td><%= item.total %></td>
 				<td><%= item.under_amount %></td>
-				<td><%= item.locations.collect {|location| "<a href=\"/locations/#{location.slug}\">#{location.name}</a>"}.join(", ") %></td>
+				<td><%= item.print_locations_links %></td>
 			</tr>
 			<% end %>
 		</tbody>
