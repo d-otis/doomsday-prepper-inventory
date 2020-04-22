@@ -1,0 +1,22 @@
+<div class="col-sm-8 offset-sm-2">
+	<h3 class="text-center">Assign Items to Locations</h3>
+	<form action="/locations/<%= @location.slug %>/assign" method="POST">
+		<input type="hidden" name="_method" value="PATCH">
+		<div class="form-group">
+			<label for="location_name">Location Name</label>
+			<input type="text" name="location[name]" class="form-control form-control-lg" id="location_name" value="<%= @location.name %>">
+		</div>
+
+		
+		<% @items.each do |item| %>
+			<div class="form-check form-check-inline mb-2">
+				<input type="checkbox" class="form-check-input" id="item_<%= item.id %>" value="<%= item.id %>" name="location[item_ids][]" <%= 'checked' if @location.item_ids.include?(item.id) %>>
+				<label for="item_<%= item.id %>" class="form-check-label"><%= item.name %></label>
+			</div>
+		<% end %>
+
+		<br>
+		<input type="submit" class="btn btn-secondary btn-block my-5" value="Save">
+	</form>
+
+</div>
