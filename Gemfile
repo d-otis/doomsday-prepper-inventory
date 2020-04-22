@@ -11,4 +11,5 @@ gem 'rake'
 gem 'require_all'
 gem 'bcrypt'
 gem 'rack-flash3', :require => 'rack-flash'
+gem 'pg'
 
