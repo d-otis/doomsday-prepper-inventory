@@ -1,4 +1,4 @@
-ENV["RACK_ENV"] ||= "production"
+ENV['SINATRA_ENV'] ||= "production"
 
 require_relative "./config/environment"
 
