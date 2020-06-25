@@ -6,7 +6,6 @@ class ApplicationController < Sinatra::Base
 		set :views, "app/views"
 		set :database_file, '../../config/database.yml'
 		enable :sessions
-		# set :session_secret, SECRET
 		set :session_secret, ENV["SECRET"]
 	end
 
