@@ -3,6 +3,7 @@ class ApplicationController < Sinatra::Base
 	register Sinatra::ActiveRecordExtension
 
 	configure do
+		set :environment, ENV["RACK_ENV"]
 		set :views, "app/views"
 		set :database_file, '../../config/database.yml'
 		enable :sessions
