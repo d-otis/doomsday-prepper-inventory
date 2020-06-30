@@ -13,4 +13,3 @@ gem 'bcrypt'
 gem 'rack-flash3', :require => 'rack-flash'
 gem 'pg'
 gem 'dotenv'
-
