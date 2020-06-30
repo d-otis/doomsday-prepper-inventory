@@ -1,15 +1,10 @@
 require 'bundler/setup'
 Bundler.require
 
-ENV['RACK_ENV'] ||= "production"
+require 'dotenv/load'
 
-# ActiveRecord::Base.establish_connection(
-#   :adapter => "sqlite3",
-#   :database => "db/inventory_#{ENV['SINATRA_ENV']}.sqlite"
-# )
+ENV['RACK_ENV']
 
-ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
-
-# require_relative "session_secret"
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/inventory_dev')
 
 require_all 'app'
