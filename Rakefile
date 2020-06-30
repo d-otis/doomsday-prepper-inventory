@@ -1,5 +1,3 @@
-ENV['RACK_ENV'] ||= "production"
-
 require_relative "./config/environment"
 
 require "sinatra/activerecord/rake"
@@ -11,4 +9,3 @@ end
 task :console do
 	Pry.start
 end
-
