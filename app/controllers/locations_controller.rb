@@ -15,6 +15,18 @@ class LocationsController < ApplicationController
 		erb :'/locations/new'
 	end
 
+	post '/locations' do
+		location = Location.new(params[:location])
+		location.user = current_user
+		
+		if location.save
+			redirect '/locations'
+		else
+			flash[:message] = "Can't be blank."
+			redirect '/locations/new'
+		end
+	end
+
 	get "/locations/:slug/edit" do
 		if logged_in?
 			@location = Location.where(owned_by_current_user).find_by_slug(params[:slug])
