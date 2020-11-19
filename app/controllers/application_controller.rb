@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
 		if logged_in?
 			redirect "/items"
 		else
-			redirect "/login"
+			erb :'index'
 		end
 	end
 
