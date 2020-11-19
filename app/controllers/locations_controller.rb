@@ -13,9 +13,9 @@ class LocationsController < ApplicationController
 
 	get "/locations/:slug/edit" do
 		if logged_in?
-			@location = Location.find_by_slug(params[:slug])
+			@location = Location.where(user: current_user).find_by_slug(params[:slug])
 			@location_items = LocationItem.where(location: @location)
-			@items = Item.order(name: :asc)
+			@items = Item.where(user: current_user).order(name: :asc)
 			@title = "Edit Location Items"
 
 			erb :"/locations/edit"
