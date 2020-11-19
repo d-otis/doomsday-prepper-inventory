@@ -6,8 +6,7 @@ class CreateLocationItems < ActiveRecord::Migration[5.2]
   		t.float :item_count, :default => 0
   		t.float :item_par, :default => 0
   		t.boolean :under
-
-  		t.timestamps null: false
+  		t.timestamps
   	end
   end
 end
