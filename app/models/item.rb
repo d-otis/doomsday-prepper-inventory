@@ -2,6 +2,7 @@ class Item < ActiveRecord::Base
 
 	has_many :location_items, :dependent => :destroy
 	has_many :locations, through: :location_items
+	belongs_to :user
 
 	validates :name, presence: true
 
