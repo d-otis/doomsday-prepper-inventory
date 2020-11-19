@@ -13,7 +13,7 @@ class Location < ActiveRecord::Base
 	end
 
 	def first?
-		self == Location.first
+		self == self.user.locations.first
 	end
 
 end
