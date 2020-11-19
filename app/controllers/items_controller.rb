@@ -90,6 +90,7 @@ class ItemsController < ApplicationController
 
 			redirect "/items"
 		else
+			flash[:message] = 'There was an error.'
 			redirect "/login"
 		end
 	end
