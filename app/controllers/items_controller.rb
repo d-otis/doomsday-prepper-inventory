@@ -25,6 +25,7 @@ class ItemsController < ApplicationController
 	post "/items" do
 		if logged_in?
 			item = Item.new(params[:item])
+			item.user = current_user
 
 			if item.save
 				flash[:message] = "#{item.name} created!"
