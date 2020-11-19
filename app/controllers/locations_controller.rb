@@ -11,6 +11,10 @@ class LocationsController < ApplicationController
 		end
 	end
 
+	get '/locations/new' do
+		erb :'/locations/new'
+	end
+
 	get "/locations/:slug/edit" do
 		if logged_in?
 			@location = Location.where(owned_by_current_user).find_by_slug(params[:slug])
