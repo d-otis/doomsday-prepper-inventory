@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
 
 	get "/items/:slug/edit" do
 		if logged_in?
-			@item = Item.find_by_slug(params[:slug])
+			@item = Item.where(user: current_user).find_by_slug(params[:slug])
 			@locations = Location.where(user: current_user)
 			@title = "Edit or Reassign Item"
 
