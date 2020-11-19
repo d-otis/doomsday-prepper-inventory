@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
 
 	get "/items/shopping-list" do
 		if logged_in?
-			@items = Item.order(name: :asc)
+			@items = Item.where(user: current_user).order(name: :asc).select {|item| item.under?}
 
 			erb :"/items/shopping-list"
 		else
