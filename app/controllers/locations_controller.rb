@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
 
 	get "/locations" do
 		if logged_in?
-			@locations = Location.all
+			@locations = Location.where(user: current_user)
 			@title = "Locations"
 
 			erb :"/locations/index"
