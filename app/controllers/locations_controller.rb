@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
 
 	get "/locations" do
 		if logged_in?
-			@locations = Location.where(user: current_user)
+			@locations = Location.where(owned_by_current_user)
 			@title = "Locations"
 
 			erb :"/locations/index"
@@ -13,9 +13,9 @@ class LocationsController < ApplicationController
 
 	get "/locations/:slug/edit" do
 		if logged_in?
-			@location = Location.where(user: current_user).find_by_slug(params[:slug])
+			@location = Location.where(owned_by_current_user).find_by_slug(params[:slug])
 			@location_items = LocationItem.where(location: @location)
-			@items = Item.where(user: current_user).order(name: :asc)
+			@items = Item.where(owned_by_current_user).order(name: :asc)
 			@title = "Edit Location Items"
 
 			erb :"/locations/edit"
@@ -26,8 +26,8 @@ class LocationsController < ApplicationController
 
 	get "/locations/:slug/assign" do
 		if logged_in?
-			@location = Location.where(user: current_user).find_by_slug(params[:slug])
-			@items = Item.where(user: current_user).order(name: :asc)
+			@location = Location.where(owned_by_current_user).find_by_slug(params[:slug])
+			@items = Item.where(owned_by_current_user).order(name: :asc)
 
 			erb :"/locations/assign"
 		else
@@ -37,7 +37,7 @@ class LocationsController < ApplicationController
 
 	patch "/locations/:slug/assign" do
 		if logged_in?
-			location = Location.where(user: current_user).find_by_slug(params[:slug])
+			location = Location.where(owned_by_current_user).find_by_slug(params[:slug])
 			location.update(params[:location])
 			redirect "/locations/#{location.slug}"
 		else
@@ -47,7 +47,7 @@ class LocationsController < ApplicationController
 
 	get "/locations/:slug" do
 		if logged_in?
-			@location = Location.find_by_slug(params[:slug])
+			@location = Location.where(owned_by_current_user).find_by_slug(params[:slug])
 			@title = "#{@location.name} Items"
 
 			erb :"/locations/show"
@@ -58,7 +58,7 @@ class LocationsController < ApplicationController
 
 	patch "/locations/:slug" do
 		if logged_in?
-			location = Location.find_by_slug(params[:slug])
+			location = Location.where(owned_by_current_user).find_by_slug(params[:slug])
 			location.update(params[:location])
 
 

@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
 	get "/items" do
 		if logged_in?
-			@items = Item.where(user: current_user).order(name: :asc)
+			@items = Item.where(owned_by_current_user).order(name: :asc)
 			@title = "Items"
 			
 			erb :"/items/index"
@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
 
 	get "/items/new" do
 		if logged_in?
-			@locations = Location.where(user: current_user)
+			@locations = Location.where(owned_by_current_user)
 			@title = "Add New Item"
 
 			erb :"/items/new"
@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
 
 	get "/items/shopping-list" do
 		if logged_in?
-			@items = Item.where(user: current_user).order(name: :asc).select {|item| item.under?}
+			@items = Item.where(owned_by_current_user).order(name: :asc).select {|item| item.under?}
 			@title = "Shopping List"
 			erb :"/items/shopping-list"
 		else
@@ -53,8 +53,8 @@ class ItemsController < ApplicationController
 
 	get "/items/:slug/edit" do
 		if logged_in?
-			@item = Item.where(user: current_user).find_by_slug(params[:slug])
-			@locations = Location.where(user: current_user)
+			@item = Item.where(owned_by_current_user).find_by_slug(params[:slug])
+			@locations = Location.where(owned_by_current_user)
 			@title = "Edit or Reassign Item"
 
 			erb :"/items/edit"
@@ -65,7 +65,7 @@ class ItemsController < ApplicationController
 
 	patch "/items/:slug" do
 		if logged_in?
-			item = Item.find_by_slug(params[:slug])
+			item = Item.where(owned_by_current_user).find_by_slug(params[:slug])
 			slug = item.slug
 
 			if item.update(params[:item])
@@ -82,7 +82,7 @@ class ItemsController < ApplicationController
 
 	delete "/items/:slug" do
 		if logged_in?
-			item = Item.find_by_slug(params[:slug])
+			item = Item.where(owned_by_current_user).find_by_slug(params[:slug])
 
 			item.destroy
 
