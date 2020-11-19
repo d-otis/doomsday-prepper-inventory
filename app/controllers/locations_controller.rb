@@ -26,8 +26,8 @@ class LocationsController < ApplicationController
 
 	get "/locations/:slug/assign" do
 		if logged_in?
-			@location = Location.find_by_slug(params[:slug])
-			@items = Item.order(name: :asc)
+			@location = Location.where(user: current_user).find_by_slug(params[:slug])
+			@items = Item.where(user: current_user).order(name: :asc)
 
 			erb :"/locations/assign"
 		else
@@ -37,7 +37,7 @@ class LocationsController < ApplicationController
 
 	patch "/locations/:slug/assign" do
 		if logged_in?
-			location = Location.find_by_slug(params[:slug])
+			location = Location.where(user: current_user).find_by_slug(params[:slug])
 			location.update(params[:location])
 			redirect "/locations/#{location.slug}"
 		else
