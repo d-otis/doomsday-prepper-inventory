@@ -35,7 +35,7 @@ class Item < ActiveRecord::Base
 	end
 
 	def under_amount
-		if (par_total != 0)
+		if par_total && par_total != 0
 			par_total - total > 0 ? "<span class='badge badge-pill badge-danger'>#{par_total - total}</span>" : "<span class='badge badge-pill badge-success'>Stocked</span>"
 		else
 			"<span class='badge badge-pill badge-warning'>Not set</span>"
