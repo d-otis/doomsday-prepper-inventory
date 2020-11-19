@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
 	has_many :items, through: :location_items
 	belongs_to :user
 
-	validates :name, presence: true
+	validates :name, presence: true, uniqueness: { scope: :user }
 
 	def slug
 		name.downcase.gsub(/[!?@ +,&]/, "-").gsub(/[().']/, "").gsub("$", "s").squeeze("-")
