@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
 
 	get "/items/new" do
 		if logged_in?
-			@locations = Location.all
+			@locations = Location.where(user: current_user)
 			@title = "Add New Item"
 
 			erb :"/items/new"
