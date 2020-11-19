@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
 	get "/items/shopping-list" do
 		if logged_in?
 			@items = Item.where(user: current_user).order(name: :asc).select {|item| item.under?}
-
+			@title = "Shopping List"
 			erb :"/items/shopping-list"
 		else
 			redirect "/login"
