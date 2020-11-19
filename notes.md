@@ -11,3 +11,6 @@
 ## Location Show
 - [x] Should list all items and their # and par in addition to color code if under par
 
+## Users
+- [ ] Create Account model that is owned by User
+- [ ] Add migration to attach Account ID to each model?
