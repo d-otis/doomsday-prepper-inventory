@@ -51,7 +51,7 @@ class Item < ActiveRecord::Base
 	end
 
 	def under?
-		par_total - total > 0
+		par_total - total > 0 if par_total
 	end
 
 	def print_locations(opts = {})
