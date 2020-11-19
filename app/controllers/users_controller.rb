@@ -5,6 +5,15 @@ class UsersController < ApplicationController
     end
 
     post '/users' do
-        binding.pry
+        user = User.new(params)
+
+        if user.save
+            flash[:message] = "You've successfully signed up! Please login"
+
+            redirect '/login'
+        else
+            flash[:message] = 'errors'
+            redirect '/signup'
+        end
     end
 end
