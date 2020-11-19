@@ -8,7 +8,11 @@ class LocationItem < ActiveRecord::Base
 	end
 
 	def need
-		result = self.item_par - self.item_count
-		result > 0 ? result : "<span class='badge badge-pill badge-success'>Stocked</span>"
+		if (self.item_par != 0)
+			result = self.item_par - self.item_count
+			result > 0 ? result : "<span class='badge badge-pill badge-success'>Stocked</span>"
+		else
+			"<span class='badge badge-pill badge-warning'>Not-set</span>"
+		end
 	end
 end

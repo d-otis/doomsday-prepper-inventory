@@ -43,6 +43,10 @@ class ApplicationController < Sinatra::Base
 			@current_user ||= User.find(session[:user_id]) if session[:user_id]
 		end
 
+		def owned_by_current_user
+			{user: current_user}
+		end
+
 		def logout
 			session.clear
 

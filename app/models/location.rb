@@ -2,6 +2,7 @@ class Location < ActiveRecord::Base
 
 	has_many :location_items
 	has_many :items, through: :location_items
+	belongs_to :user
 
 	def slug
 		name.downcase.gsub(/[!?@ +,&]/, "-").gsub(/[().']/, "").gsub("$", "s").squeeze("-")
@@ -12,7 +13,7 @@ class Location < ActiveRecord::Base
 	end
 
 	def first?
-		self == Location.first
+		self == self.user.locations.first
 	end
 
 end
