@@ -31,7 +31,7 @@ class Item < ActiveRecord::Base
 	end
 
 	def total
-		LocationItem.where("item_id = ?", self.id).collect(&:item_count).reduce(:+)
+		LocationItem.where("item_id = ?", self.id).collect(&:item_count).reduce(:+) || 'please assign a location'
 	end
 
 	def under_amount
