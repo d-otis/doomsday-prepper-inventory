@@ -55,6 +55,9 @@ class Item < ActiveRecord::Base
 	end
 
 	def print_locations(opts = {})
+
+		return 'not assigned' if self.locations.empty?
+
 		if opts[:links] == true
 			self.locations.collect {|location| "<a href=\"/locations/#{location.slug}\">#{location.name}</a>"}.join(", ")
 		elsif opts[:links] == false
