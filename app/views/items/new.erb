@@ -6,8 +6,12 @@
 			<input type="text" class="form-control" id="item_name" name="item[name]">
 		</div>
 
-		<h3>Locations: </h3>
 
+		<div class="form-group">
+			<h3>Locations: </h3>
+			<%= "<a href='/locations/new' class='alert alert-warning my-5'> Click here to create a location, first. </a>" if @locations.empty? %>
+		</div>
+		
 <% @locations.each do |location| %>
 		<div class="form-check form-check-inline">
 			<input type="checkbox" class="form-check-input" id="location_<%= location.id %>" name="item[location_ids][]" value="<%= location.id %>">
