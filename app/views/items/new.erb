@@ -9,7 +9,7 @@
 
 		<div class="form-group">
 			<h3>Locations: </h3>
-			<%= "<a href='/locations/new' class='alert alert-warning my-5'> Click here to create a location, first. </a>" if @locations.empty? %>
+			<%= "<a href='/locations/new' class='alert alert-danger my-5'> Click here to create a location, first. </a>" if @locations.empty? %>
 		</div>
 		
 <% @locations.each do |location| %>
