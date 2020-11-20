@@ -15,7 +15,10 @@
 			<input type="text" class="form-control" id="item_name" name="item[name]" value="<%= @item.name %>">
 		</div>
 
-		<h3>Locations: </h3>
+<div class="form-group">
+	<h3>Locations: </h3>
+	<%= erb :'/items/assign_message' if @locations.empty? %>
+</div>
 
 <% @locations.each do |location| %>
 		<div class="form-check form-check-inline">
@@ -24,7 +27,7 @@
 		</div>
 <% end %>
 
-		<br>
+
 			<input type="submit" value="Save" class="btn btn-secondary btn-block my-2">
 	</form>
 	<a href="/items" class="btn btn-outline-secondary btn-block mb-5">Cancel</a>

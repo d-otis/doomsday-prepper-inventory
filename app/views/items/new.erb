@@ -7,10 +7,10 @@
 		</div>
 
 
-		<div class="form-group">
-			<h3>Locations: </h3>
-			<%= "<a href='/locations/new' class='alert alert-danger my-5'> Click here to create a location, first. </a>" if @locations.empty? %>
-		</div>
+	<div class="form-group">
+		<h3>Locations: </h3>
+		<%= erb :'/items/assign_message' if @locations.empty? %>
+	</div>
 		
 <% @locations.each do |location| %>
 		<div class="form-check form-check-inline">
@@ -18,7 +18,6 @@
 			<label for="location_<%= location.id %>" class="form-check-label"><%= location.name %></label>
 		</div>
 <% end %>
-<br>	
 		<input type="submit" value="Save" class="btn btn-primary mt-2">
 	</form>
 </div>
