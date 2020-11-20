@@ -1,5 +1,8 @@
 # Doomsday Prepper Inventory Management System
 
+[Live Demo](https://doomsday-prepper-inventory.herokuapp.com)
+[Blog Post](https://danfoley.dev/doomsday-prepper-inventory-system/) 
+
 ## Overview
 - Utilized Sinatra’s un-opinionated framework for a highly customized experience
 - Defined endpoints for items, locations, allowing for items to exist in multiple physical storage locations via JOINs
