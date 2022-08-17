@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-ruby '2.6.1'
+ruby '2.7.2'
 source "https://rubygems.org"
 
 gem 'activerecord', '~>5.2.8.1', :require => 'active_record'
